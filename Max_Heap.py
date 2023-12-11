@@ -1,4 +1,4 @@
-class Min_Heap:
+class Max_Heap:
     """
     Min Heap with structure implemented using Order objects and an array backend
     """
@@ -23,7 +23,7 @@ class Min_Heap:
     def _heapify_up(self, index):
         parent_index = self._parent(index)
 
-        while(index > 0 and self.heap[index].get_price < self.heap[parent_index].get_price):
+        while(index > 0 and self.heap[index].get_price > self.heap[parent_index].get_price):
             self._swap(index, parent_index)
             index = parent_index
             parent_index = self._parent(index)
@@ -33,20 +33,21 @@ class Min_Heap:
         right_child_index  = self._right_child(index)
 
         smallest_index = index
-        if (left_child_index < self.heap_size and
-                self.heap[left_child_index].get_price < self.heap[smallest_index].get_price):
+        if (left_child_index > self.heap_size and
+                self.heap[left_child_index].get_price > self.heap[smallest_index].get_price):
 
             smallest_index = left_child_index
 
 
-        if (right_child_index < self.heap_size and
-                self.heap[right_child_index].get_price < self.heap[smallest_index].get_price):
+        if (right_child_index > self.heap_size and
+                self.heap[right_child_index].get_price > self.heap[smallest_index].get_price):
 
             smallest_index = right_child_index
 
         if (smallest_index != index):
             self._swap(smallest_index, index)
             self._heapify_down(smallest_index)
+
 
     def _resize_heap(self):
         self.capacity *= 2
@@ -60,13 +61,13 @@ class Min_Heap:
         self.heap_size += 1
         self._heapify_up(self.heap_size - 1)
 
-    def peak_min(self):
+    def peak_max(self):
         if (self.heap_size == 0):
             raise IndexError("Heap is Empty")
 
         return self.heap[0]
 
-    def extract_min(self):
+    def extract_max(self):
         if (self.heap_size == 0):
             raise IndexError("Heap is Empty")
 
@@ -75,4 +76,3 @@ class Min_Heap:
         self.heap[0] = self.heap[self.heap_size]
         self._heapify_down(0)
 
-        return min_order
