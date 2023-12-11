@@ -6,16 +6,19 @@ class Order:
     Suit can take on values from [0,3] where 0 is Spades, 1 is Clubs, 2 is Diamonds and 3 is Hearts
     Owner can take on values from [0,3] where each number corresponds to a Trader ID
     """
+    self.order_id
     self.price = 0
     self.type = 0
     self.suit = 0
     self.owner = 0
 
-    def __init__(self, data):
+    def __init__(self, data, next_order = None, prev_order = None):
         self.price = data[0]
         self.type = data[1]
         self.suit = data[2]
         self.owner = data[3]
+        self.next_order = next_order
+        self.prev_order = prev_order
 
     def get_price(self):
         return self.price
