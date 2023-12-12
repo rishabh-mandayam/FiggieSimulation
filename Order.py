@@ -7,12 +7,6 @@ class Order:
     Owner can take on values from [0,3] where each number corresponds to a Trader ID
     Volume is just the order volume, ie how much of asset j is being sold
     """
-    self.order_id
-    self.price = 0
-    self.type = 0
-    self.suit = 0
-    self.owner = 0
-    self.volume = 0
 
     def __init__(self, data, next_order = None, prev_order = None):
         self.price = data[0]
@@ -38,3 +32,5 @@ class Order:
     def get_volume(self):
         return self.volume
 
+    def decrease_volume(self, delta):
+        self.volume -= delta
