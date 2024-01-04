@@ -28,7 +28,7 @@ class Trader(ABC):
         pass
 
     @abstractmethod
-    def calculate_expected_value():
+    def pricing_algorithm():
         pass
 
     @abstractmethod
